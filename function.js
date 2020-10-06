@@ -2,9 +2,6 @@
 	let datos;
 	//Funcion para traer datos
 	function traerDatos(){
-
-		console.log("dentrto");
-
 		const xhttp = new XMLHttpRequest();
 		xhttp.open('GET','datos.json',true);
 		xhttp.send();
@@ -15,6 +12,10 @@
 		  }
 	}
 	traerDatos();
+
+	function cerrar(){
+		window.close();
+	}
 
     function countPal(A,CON,NA){
       	let N = [];
