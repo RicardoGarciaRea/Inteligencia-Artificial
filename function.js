@@ -1,58 +1,29 @@
-var conocimiento = {
-	"CON":[
-		{"TieneCon": [["tortuga","garras"],
-					 ["tortuga","proteccion queratina"],
-					 ["Gallo","proteccion queratina"],
-					 ["Gallo","garras"],
-					 ["Cocodrilo","proteccion queratina"],
-					 ["Cocodrilo","garras"],
-					 ["Iguana","proteccion queratina"],
-					 ["Iguana","garras"],
-					 ["Gato","G. mamarias"],
-					 ["Gato","pelo"],
-					 ["Gato","garras"],
-					 ["Ballena","G. mamarias"],
-					 ["Oso","G. mamarias"],
-					 ["Oso","pelo"],
-					 ["Oso","garras"],
-					 ["Delfin","G. mamarias"]]},
+	//Variable donde se guada nuestro json
+	let datos;
+	//Funcion para traer datos
+	function traerDatos(){
 
-		{"ViveCon": [["tortuga","Tierra"],
-					["tortuga","Agua"],
-					["Gallo","Tierra"],
-					["Cocodrilo","Tierra"],
-					["Cocodrilo","Agua"],
-					["Iguana","Tierra"],
-					["Gato","Tierra"],
-					["Ballena","Agua"],
-					["Oso","Tierra"],
-					["Delfin","Agua"]]},
-		{"ConEs": [["proteccion queratina","Oviparo"],
-				  ["Oviparo","Sauropsidos"],
-				  ["Sauropsidos","tetrapodos"],
-				  ["G. mamarias","viviparo"],
-				  ["viviparo","Mammalia"],
-				  ["Mammalia","tetrapodos"],
-				  ["tortuga","Oviparo"],
-				  ["Gallo","Oviparo"],
-				  ["Cocodrilo","Oviparo"],
-				  ["Iguana","Oviparo"],
-				  ["Gato","viviparo"],
-				  ["Oso","viviparo"],
-				  ["Ballena","viviparo"],
-				  ["Delfin","viviparo"],
-				  ["tetrapodos","vertebrado"]]}
-		]
-}
+		console.log("dentrto");
 
-        function countPal(A,CON,NA){
-        	let N = [];
-        	for(var i = 0; i < CON.length; i++){
-        		if(CON[i][0] == A){
-        			N.push(CON[i][1]);
-        			console.log("a",CON[i][1])
-        		}
-        	}
+		const xhttp = new XMLHttpRequest();
+		xhttp.open('GET','datos.json',true);
+		xhttp.send();
+		  xhttp.onreadystatechange = function(){  	
+			if(this.readyState == 4 && this.status ==200){
+				datos = JSON.parse(this.responseText);
+			}
+		  }
+	}
+	traerDatos();
+
+    function countPal(A,CON,NA){
+      	let N = [];
+       	for(var i = 0; i < CON.length; i++){
+       		if(CON[i][0] == A){
+       			N.push(CON[i][1]);
+       			console.log("a",CON[i][1])
+       		}
+       	}
         	return N;
         }
 
@@ -94,48 +65,44 @@ var conocimiento = {
 			return false;
 		}
 
-		function xd(){
-			var x = prompt("Ingresa la funcion");
-			eval(x);
-		}
+		//inicio de todo
+	function inicio(a,t,v,e){
+			var animal= a;
+			var Tiene = t;
+			var vive = v;
+			var es = e;
+			var res = "";
 
-function inicio(a,t,v,e){
-		var animal= a;
-		var Tiene = t;
-		var vive = v;
-		var es = e;
-		var res = "";
+			var TieneCon = datos["CON"][0]["TieneCon"];
+			var ViveCon = datos["CON"][1]["ViveCon"];
+			var ConEs = datos["CON"][2]["ConEs"];
 
-		var TieneCon = conocimiento["CON"][0]["TieneCon"];
-		var ViveCon = conocimiento["CON"][1]["ViveCon"];
-		var ConEs = conocimiento["CON"][2]["ConEs"];
+			let NA = [];
+			NA = countPal(animal,TieneCon,NA);
+			let pos = EncontrarTiene(Tiene,NA);
 
-		let NA = [];
-		NA = countPal(animal,TieneCon,NA);
-		let pos = EncontrarTiene(Tiene,NA);
+			let VA = [];
+			VA = countPal(animal,ViveCon,VA);
+			let posVive = EncontrarTiene(vive,VA);
 
-		let VA = [];
-		VA = countPal(animal,ViveCon,VA);
-		let posVive = EncontrarTiene(vive,VA);
+			var x = esta(animal,es,ConEs);
+			
+			if(pos){
+				res = "El/La "+animal+" tiene "+Tiene;
+			}
+			else{
+				res ="El "+animal+" no tiene "+Tiene;
+			}
+			if(posVive){
+				res = res+" y vive en "+vive;
+			}else{
+				res = res+ " y no vive en "+vive;
+			}
+			if(x){
+				res = res+ " es "+es;
+			}else{
+				res = res+ " no es "+es;
+			}
 
-		var x = esta(animal,es,ConEs);
-		
-		if(pos){
-			res = "El/La "+animal+" tiene "+Tiene;
-		}
-		else{
-			res ="El "+animal+" no tiene "+Tiene;
-		}
-		if(posVive){
-			res = res+" y vive en "+vive;
-		}else{
-			res = res+ " y no vive en "+vive;
-		}
-		if(x){
-			res = res+ " es "+es;
-		}else{
-			res = res+ " no es "+es;
-		}
-
-		document.getElementById("resultado").innerHTML = res; 
-}
+			document.getElementById("resultado").innerHTML = res; 
+	}
