@@ -94,11 +94,16 @@ var conocimiento = {
 			return false;
 		}
 
-function inicio(){
-		var animal= prompt("Ingrese un animal");
-		var Tiene = prompt(animal+" tiene");
-		var vive = prompt(animal+" ¿vive en?");
-		var es = prompt(animal+" es");
+		function xd(){
+			var x = prompt("Ingresa la funcion");
+			eval(x);
+		}
+
+function inicio(a,t,v,e){
+		var animal= a;
+		var Tiene = t;
+		var vive = v;
+		var es = e;
 		var res = "";
 
 		var TieneCon = conocimiento["CON"][0]["TieneCon"];
