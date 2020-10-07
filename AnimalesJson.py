@@ -1,43 +1,28 @@
 import json 
 Conocimiento = False
 
-with open ("datos.json", "r") as read_file:
+with open ("animales.json", "r") as read_file:
     data = json.load(read_file)
-    tieneCon = data['CON'][0]['TieneCon']
-    viveCon = data['CON'][1]['ViveCon']
-    esCon = data['CON'][2]['ConEs']
+    conocimiento = data['conocimiento']
     
 
-    
+        
     def Checar(animal,verbo,cosa):
         valor=False
-        if verbo == "tiene":
-            for t in tieneCon:
-                if animal == t[0]:
-                    if t[1] == cosa:
-                        valor=True
-        
-        if verbo == "vive":
-            for v in viveCon:
-                if animal == v[0]:
-                    if v[1] == cosa:
-                        valor=True
-        
-        
-        if verbo == "es":
-            for e in esCon:
-                if animal == e[0]:
-                    animal = e[1]
-                    if animal == cosa:
-                        valor=True
-        
+        for t in conocimiento:
+            if animal == t[0] and verbo == "tiene" and cosa==t[2]:
+                valor=True
+            if animal == t[0] and verbo == "vive" and cosa==t[2]:
+                valor=True
+            if animal==t[0] and t[1]=="es":
+                animal = t[2]
+                if cosa == animal:
+                    valor=True
         print(valor)
+                    
 
 def main():
-    print('Checar("animal","verbo","cosa")')
-    print('Checar("Gato","tiene","garras")')
-    print('Checar("gato","es","viviparo")')
-    print('Checar("gato","vive","tierra")')
+    print("Bienvenido a este programa")
     Terminar= False
     while not Terminar:
         Leer = input("> ")
@@ -48,6 +33,3 @@ def main():
         
 if __name__ == "__main__":
      main()
-            
-        
-        
