@@ -8,16 +8,26 @@ with open ("animales.json", "r") as read_file:
 
         
     def Checar(animal,verbo,cosa):
+        cambio=animal
+        cambio2=animal
         valor=False
         for t in conocimiento:
             if animal == t[0] and verbo == "tiene" and cosa==t[2]:
                 valor=True
             if animal == t[0] and verbo == "vive" and cosa==t[2]:
                 valor=True
-            if animal==t[0] and t[1]=="es":
-                animal = t[2]
-                if cosa == animal:
+            if cambio==t[0] and t[1]=="es":
+                cambio = t[2]
+                if cosa == cambio:
                     valor=True
+        if verbo=="es":
+            for t in reversed (conocimiento):
+                if cambio2 == t[2] and verbo == t[1]:
+                    cambio2 = t[0]
+                if cosa == cambio2:
+                    valor=True
+            
+        
         print(valor)
                     
 
