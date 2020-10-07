@@ -32,7 +32,7 @@ with open ("animales.json", "r") as read_file:
                     
 
 def main():
-    print("Bienvenido a este programa")
+    print("animales")
     Terminar= False
     while not Terminar:
         Leer = input("> ")
