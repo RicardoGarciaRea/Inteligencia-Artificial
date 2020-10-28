@@ -1,0 +1,19 @@
+{
+	"Tweets" : [
+		{"Stream":true,  "texto":"tft y lolsito VENTE!"},
+		{"Stream":true, "texto":"Vamos a por el set 4"},
+
+		{"Stream":true,  "texto":"Vamos a jugar a cosas en directo"},
+		{"Stream":true, "texto":"DIRECTO TFT BAJAMOS A DIAMANTE POR POR POR 17 VEZ ?"},
+
+		{"Stream":true, "texto":"DIRECTO DE TFT"},
+		{"Stream":false, "texto":"Estoy muy contento de participar en este proyecto. @fmapfre @LVPes y yo vamos a presentar un contenido que va a interesaros a muchos de vosotros. "},
+
+		{"Stream":true, "texto":"Vamos a jugar TFT mientras damos códigos de PYKE PSYOPS!"},
+		{"Stream":true, "texto":"Vamos a jugar al TFT"},
+
+		{"Stream":false, "texto":"Sé lo que siente"},
+		{"Stream":false, "texto":"Esperando a @DalesomHS y a @HolaSoySergio en el parque"}
+
+	]
+}
