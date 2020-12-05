@@ -2,8 +2,8 @@ import json
 import random
 ############### Inicio mandar datos #########################
 if __name__ == "__main__":
-    ruta1 = 'tablero.json'
-    ruta2 = 'data.json'
+    ruta1 = './boome2/tablero.json'
+    ruta2 = './boome2/data.json'
 
 def sendData(donde, datos):
     with open("data.json") as json_file:
@@ -178,7 +178,6 @@ def cost(r, d):
             return 1
     return 2
 
-
 def inicio(r):
     estuve.append(r)
     if r != bomba:
@@ -193,7 +192,6 @@ def inicio(r):
         co.pop(xs)
         inicio(nr)
 
-
 def detMen(c):
     men = min(c)
     repe = c.count(men)
@@ -205,9 +203,7 @@ def detMen(c):
             menores.append(i)
     return menores
 
-
 inicio(robot)
-
 
 def maxVal(list,spath):
     di = []
@@ -247,3 +243,19 @@ def newPath(inicio):
 newPath(bomba)
 print("Pase por: ",estuve)
 print("Mejor Camino:",spath)
+
+def defPath(list):    
+    for x,f in enumerate(list):
+        for y,c in enumerate(f):
+            cor = [x,y]
+            if cor in spath:
+                list[x][y] = "R"
+            else:
+                if cor in ban:
+                    list[x][y] = 2
+                else:
+                    list[x][y] = 0
+    return list
+newt = defPath(t)
+for x in newt:
+    print(x)
